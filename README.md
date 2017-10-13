@@ -1,15 +1,15 @@
-[![Build Status](https://travis-ci.org/danielsdeboer/delegate.svg?branch=master)](https://travis-ci.org/danielsdeboer/delegate)
+[![Build Status](https://travis-ci.org/danielsdeboer/laravel-ascii-middleware.svg?branch=master)](https://travis-ci.org/danielsdeboer/laravel-ascii-middleware)
 
 ## Overview
 
-Delegate is a simple way to make property calls chainable when they otherwise wouldn't be.
+Transform user input to ASCII with this middleware. Useful in dealing with legacy components where UTF-8 may break things.
 
 ### Installation
 
 Via Composer:
 
 ```
-composer require aviator/delegate
+composer require aviator/laravel-ascii-middleware
 ```
 
 ### Testing
@@ -22,30 +22,11 @@ composer test
 
 ### Usage
 
-Use a magic `__get` to set up a delegate:
+Use like [any other middleware](https://laravel.com/docs/master/middleware). You can register it if you like or just call it by class name:
 
 ```php
-public function __get ($name)
+public function __construct ()
 {
-    if ($name === 'foo') {
-        return $this->getFooDelegate()
-    }
+    $this->middleware(LaravelAsciiMiddleware::class);
 }
 ```
-
-which will return the delegate when `$instance->foo` is called.
-
-Since Delegate accepts anything as its first parameter and a Closure as its second, you can do anything:
-
-```php
-private function getFooDelegate ()
-{
-    return new Delegate($this->someMember, function ($collection, $name) {
-        return $collection->get($name);
-    }
-}
-```
-
-This allows you to call `$instance->foo->bar`, which will call your function against `someMember`. 
-
-
