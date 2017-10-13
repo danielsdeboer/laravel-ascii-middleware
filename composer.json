@@ -1,0 +1,24 @@
+{
+    "name": "aviator/laravel-ascii-middleware",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Aviator\\LaravelAsciiMiddleware\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": "5.4.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.4.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aviator\\LaravelAsciiMiddleware\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
